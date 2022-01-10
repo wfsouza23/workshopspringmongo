@@ -1,6 +1,7 @@
 package com.souzawesley.workshopspringmongo.services;
 
 import com.souzawesley.workshopspringmongo.domain.User;
+import com.souzawesley.workshopspringmongo.dto.UserDTO;
 import com.souzawesley.workshopspringmongo.repository.UserRepository;
 import com.souzawesley.workshopspringmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,9 @@ public class UserService {
 
     public User insert(User obj){
         return repo.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDto){
+        return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
 }
