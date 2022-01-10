@@ -31,13 +31,12 @@ public class UserResource {
 
         return ResponseEntity.ok().body(listDto);
     }
-/*
+
     @RequestMapping(value = "/{id}", method = GET)
-    public ResponseEntity<UserDTO> findById(@PathVariable String id) {
+    public ResponseEntity<UserDTO> findOne(@PathVariable String id) {
         User obj = service.findById(id);
 
         return ResponseEntity.ok().body(new UserDTO(obj));
     }
 
- */
 }
