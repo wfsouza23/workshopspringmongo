@@ -1,5 +1,6 @@
 package com.souzawesley.workshopspringmongo.resources;
 
+import com.souzawesley.workshopspringmongo.domain.Post;
 import com.souzawesley.workshopspringmongo.domain.User;
 import com.souzawesley.workshopspringmongo.dto.UserDTO;
 import com.souzawesley.workshopspringmongo.services.UserService;
@@ -60,6 +61,13 @@ public class UserResource {
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/{id}/posts", method = GET)
+    public ResponseEntity<List<Post>> findPost(@PathVariable String id) {
+        User obj = service.findById(id);
+
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 
 }
