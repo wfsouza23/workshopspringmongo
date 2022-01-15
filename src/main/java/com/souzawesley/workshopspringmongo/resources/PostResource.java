@@ -3,14 +3,12 @@ package com.souzawesley.workshopspringmongo.resources;
 import com.souzawesley.workshopspringmongo.domain.Post;
 import com.souzawesley.workshopspringmongo.domain.User;
 import com.souzawesley.workshopspringmongo.dto.UserDTO;
+import com.souzawesley.workshopspringmongo.resources.util.URL;
 import com.souzawesley.workshopspringmongo.services.PostService;
 import com.souzawesley.workshopspringmongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -31,6 +29,14 @@ public class PostResource {
         Post obj = service.findById(id);
 
         return ResponseEntity.ok().body(obj);
+    }
+
+    @RequestMapping(value = "/titleSearch", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text) {
+        text = URL.decodeParam(text);
+        List<Post> list = service.findByTitle(text);
+
+        return ResponseEntity.ok().body(list);
     }
 
 }
