@@ -29,7 +29,7 @@ public class PostService {
     }
 
     public List<Post> findByTitle(String text) {
-        return repo.searchTitle(text);
+        return repo.findByTitleContainingIgnoreCase(text);
     }
 
     public List<Post> fullSearch(String text, Date minDate, Date maxDate) {
